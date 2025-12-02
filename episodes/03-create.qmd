@@ -2,23 +2,27 @@
 title: Working With Files and Directories
 teaching: 30
 exercises: 20
+objectives:
+    - Delete, copy and move specified files and/or directories.
+    - Create files in that hierarchy using an editor or by copying and renaming existing files.
+    - Create a directory hierarchy that matches a given diagram.
+questions:
+    - How can I create, copy, and delete files and directories?
+    - How can I edit files?
+keypoints:
+  - "`cp [old] [new]` copies a file."
+  - "`mkdir [path]` creates a new directory."
+  - "`mv [old] [new]` moves (renames) a file or directory."
+  - "`rm [path]` removes (deletes) a file."
+  - "`*` matches zero or more characters in a filename, so `*.txt` matches all files ending in `.txt`."
+  - "`?` matches any single character in a filename, so `?.txt` matches `a.txt` but not `any.txt`."
+  - "Use of the Control key may be described in many ways, including `Ctrl-X`, `Control-X`, and `^X`."
+  - "The shell does not have a trash bin: once something is deleted, it's really gone."
+  - "Most files' names are `something.extension`. The extension isn't required, and doesn't guarantee anything, but is normally used to indicate the type of data in the file."
+  - "Depending on the type of work you do, you may need a more powerful text editor than Nano."
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
-
-- Delete, copy and move specified files and/or directories.
-- Create files in that hierarchy using an editor or by copying and renaming existing files.
-- Create a directory hierarchy that matches a given diagram.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- How can I create, copy, and delete files and directories?
-- How can I edit files?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
+{{< include ../_includes/header.qmd >}}
 
 ## Creating directories
 
@@ -106,7 +110,7 @@ data/  results/
 ../project/results:
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Two ways of doing the same thing
 
@@ -116,9 +120,9 @@ the `thesis` directory will appear there too.
 While the shell and the file explorer are two different ways of interacting with the files,
 the files and directories themselves are the same.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-tip}
 
 ## Good names for files and directories
 
@@ -156,18 +160,8 @@ Windows and macOS file systems are typically case insensitive
 and therefore unable to distinguish between
 `thesis` and `Thesis` in the same directory.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::::  instructor
-
-Learners can sometimes get trapped within command-line text editors
-such as Vim, Emacs, or Nano. Closing the terminal emulator and opening
-a new one can be frustrating as learners will have to navigate to the
-correct folder again. Our recommendation to mitigate this problem is that
-instructors should use the same text editor as the learners during workshops
-(in most cases Nano).
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Create a text file
 
@@ -179,7 +173,7 @@ $ cd thesis
 $ nano draft.txt
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Which Editor?
 
@@ -204,7 +198,7 @@ your computer's start menu, it may want to save files in your Desktop or
 Documents directory instead. You can change this by navigating to
 another directory the first time you 'Save As...'
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 Let's type in a few lines of text.
 
@@ -219,7 +213,7 @@ the suggested default of `draft.txt`.
 Once our file is saved, we can use <kbd>Ctrl</kbd>\+<kbd>X</kbd> to quit the editor and
 return to the shell.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-tip}
 
 ## Control, Ctrl, or ^ Key
 
@@ -239,7 +233,8 @@ In nano, along the bottom of the screen you'll see `^G Get Help ^O WriteOut`.
 This means that you can use `Control-G` to get help and `Control-O` to save your
 file.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
+
 
 `nano` doesn't leave any output on the screen after it exits,
 but `ls` now shows that we have created a file called `draft.txt`:
@@ -252,7 +247,7 @@ $ ls
 draft.txt
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Creating Files a Different Way
 
@@ -271,7 +266,9 @@ $ touch my_file.txt
 
 3. When might you want to create a file this way?
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -292,7 +289,6 @@ $ touch my_file.txt
   efficiently generate a blank text file to be used by such
   programs.
 
-:::::::::::::::::::::::::
 
 To avoid confusion later on,
 we suggest removing the file you've just created before proceeding with the rest
@@ -303,9 +299,9 @@ To do this, use the following command:
 $ rm my_file.txt
 ```
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## What's In A Name?
 
@@ -332,7 +328,7 @@ program. In this case, if someone double-clicked `whale.mp3` in a file
 explorer program, the music player will automatically (and erroneously)
 attempt to open the `whale.mp3` file.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## Moving files and directories
 
@@ -422,7 +418,7 @@ $ ls quotes.txt
 quotes.txt
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Moving Files to a new folder
 
@@ -444,8 +440,9 @@ Fill in the blanks to move these files to the `raw/` folder
 ```bash
 $ mv sucrose.dat maltose.dat ____/____
 ```
+:::
 
-:::::::::::::::  solution
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -456,9 +453,8 @@ $ mv sucrose.dat maltose.dat ../raw
 Recall that `..` refers to the parent directory (i.e. one above the current directory)
 and that `.` refers to the current directory.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## Copying files and directories
 
@@ -511,7 +507,7 @@ cp: -r not specified; omitting directory 'thesis'
 ```
 
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Renaming Files
 
@@ -526,7 +522,9 @@ correct the mistake, which of the following commands could you use to do so?
 3. `mv statstics.txt .`
 4. `cp statstics.txt .`
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -540,11 +538,11 @@ correct the mistake, which of the following commands could you use to do so?
 4. No, the period(.) indicates where to copy the file, but does not provide a new file name;
   identical file names cannot be created.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::
+
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Moving and Copying
 
@@ -578,7 +576,9 @@ $ ls
 3. `proteins.dat recombined`
 4. `proteins-saved.dat`
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -596,9 +596,8 @@ So, the only thing that will show using ls (in `/Users/jamie/data`) is the recom
 3. No, see explanation above.  `proteins.dat` is located at `/Users/jamie/data/recombined`
 4. No, see explanation above.  `proteins-saved.dat` is located at `/Users/jamie`
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## Removing files and directories
 
@@ -620,7 +619,7 @@ $ ls quotes.txt
 ls: cannot access 'quotes.txt': No such file or directory
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-caution}
 
 ## Deleting Is Forever
 
@@ -632,16 +631,18 @@ recovering deleted files do exist, but there's no guarantee they'll
 work in any particular situation, since the computer may recycle the
 file's disk space right away.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Using `rm` Safely
 
 What happens when we execute `rm -i thesis_backup/quotations.txt`?
 Why would we want this protection when using `rm`?
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -655,9 +656,8 @@ The Unix shell doesn't have a trash bin, so all the files removed will disappear
 By using the `-i` option, we have the chance to check that we are deleting only the files
 that we want to remove.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 If we try to remove the `thesis` directory using `rm thesis`,
 we get an error message:
@@ -691,7 +691,7 @@ or specifying a naming pattern using wildcards. Wildcards are
 special characters that can be used to represent unknown characters
 or sets of characters when navigating the Unix file system.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Copy with Multiple Filenames
 
@@ -722,7 +722,9 @@ basilisk.dat  minotaur.dat  unicorn.dat
 $ cp minotaur.dat unicorn.dat basilisk.dat
 ```
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -736,13 +738,12 @@ because it is expecting a destination directory name as the last argument.
 cp: target 'basilisk.dat' is not a directory
 ```
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ### Using wildcards for accessing multiple files at once
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Wildcards
 
@@ -773,9 +774,9 @@ file names matching these expressions, but not the wildcards
 themselves. It is the shell, not the other programs, that expands
 the wildcards.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## List filenames matching a pattern
 
@@ -789,7 +790,9 @@ produce this output?
 3. `ls *t??ne.pdb`
 4. `ls ethane.*`
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -811,11 +814,10 @@ This is the solution.
 
 `4.` only shows files starting with `ethane.`.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## More on Wildcards
 
@@ -903,7 +905,9 @@ The resulting directory structure should look like this
         └── 2015-11-23-dataset_overview.txt
 ```
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -913,11 +917,10 @@ $ cp 2015-11-* send_to_bob/all_november_files/
 $ cp *-23-dataset* send_to_bob/all_datasets_created_on_a_23rd/
 ```
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Organizing Directories and Files
 
@@ -952,7 +955,9 @@ $ ls analyzed
 fructose.dat    sucrose.dat
 ```
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -964,11 +969,10 @@ Jamie needs to move her files `fructose.dat` and `sucrose.dat` to the `analyzed`
 The shell will expand \*.dat to match all .dat files in the current directory.
 The `mv` command then moves the list of .dat files to the 'analyzed' directory.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Reproduce a folder structure
 
@@ -1023,7 +1027,9 @@ $ mkdir data
 $ mkdir raw processed
 ```
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -1042,21 +1048,19 @@ directories, will cause `mkdir` to create any intermediate subdirectories as req
 The final set of commands generates the 'raw' and 'processed' directories at the same level
 as the 'data' directory.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
 
-- `cp [old] [new]` copies a file.
-- `mkdir [path]` creates a new directory.
-- `mv [old] [new]` moves (renames) a file or directory.
-- `rm [path]` removes (deletes) a file.
-- `*` matches zero or more characters in a filename, so `*.txt` matches all files ending in `.txt`.
-- `?` matches any single character in a filename, so `?.txt` matches `a.txt` but not `any.txt`.
-- Use of the Control key may be described in many ways, including `Ctrl-X`, `Control-X`, and `^X`.
-- The shell does not have a trash bin: once something is deleted, it's really gone.
-- Most files' names are `something.extension`. The extension isn't required, and doesn't guarantee anything, but is normally used to indicate the type of data in the file.
-- Depending on the type of work you do, you may need a more powerful text editor than Nano.
+{{< include ../_includes/footer.qmd >}}
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="text-align: left; width: 50%;">
+      [← Previous](../episodes/02-filedir.qmd)
+    </td>
+    <td style="text-align: right; width: 50%;">
+      [Next →](../episodes/04-permissions.qmd)
+    </td>
+  </tr>
+</table>

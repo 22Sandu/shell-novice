@@ -2,22 +2,23 @@
 title: Shell Scripts
 teaching: 30
 exercises: 15
+objectives:
+    - Write a shell script that runs a command or series of commands for a fixed set of files.
+    - Run a shell script from the command line.
+    - Write a shell script that operates on a set of files defined by the user on the command line.
+    - Create pipelines that include shell scripts you, and others, have written.
+questions:
+    - How can I save and re-use commands?
+keypoints:
+    - "Save commands in files (usually called shell scripts) for re-use."
+    - "`bash [filename]` runs the commands saved in a file."
+    - "`$@` refers to all of a shell script's command-line arguments."
+    - "`$1`, `$2`, etc., refer to the first command-line argument, the second command-line argument, etc."
+    - "Place variables in quotes if the values might have spaces in them."
+    - "Letting users decide what files to process is more flexible and more consistent with built-in Unix commands."
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
-
-- Write a shell script that runs a command or series of commands for a fixed set of files.
-- Run a shell script from the command line.
-- Write a shell script that operates on a set of files defined by the user on the command line.
-- Create pipelines that include shell scripts you, and others, have written.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- How can I save and re-use commands?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+{{< include ../_includes/header.qmd >}}
 
 We are finally ready to see what makes the shell such a powerful programming environment.
 We are going to take the commands we repeat frequently and save them in files
@@ -75,7 +76,7 @@ ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
 Sure enough,
 our script's output is exactly what we would get if we ran that pipeline directly.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Text vs. Whatever
 
@@ -90,7 +91,7 @@ keyboard. When editing programs, therefore, you must either use a plain
 text editor or be careful to save files as plain text.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 What if we want to select lines from an arbitrary file?
 We could edit `middle.sh` each time to change the filename,
@@ -138,7 +139,7 @@ ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
 ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Double-Quotes Around Arguments
 
@@ -147,7 +148,7 @@ in case the filename happens to contain any spaces,
 we surround `$1` with double-quotes.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 Currently, we need to edit `middle.sh` each time we want to adjust the range of
 lines that is returned.
@@ -269,7 +270,7 @@ $ bash sorted.sh *.pdb ../creatures/*.dat
 596 total
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## List Unique Species
 
@@ -298,7 +299,9 @@ Write a shell script called `species.sh` that takes any number of
 filenames as command-line arguments and uses a variation of the above command
 to print a list of the unique species appearing in each of those files separately.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -315,9 +318,8 @@ do
 done
 ```
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 Suppose we have just run a series of commands that did something useful --- for example,
 creating a graph we'd like to use in a paper.
@@ -345,7 +347,7 @@ After a moment's work in an editor to remove the serial numbers on the commands,
 and to remove the final line where we called the `history` command,
 we have a completely accurate record of how we created that figure.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Why Record Commands in the History Before Running Them?
 
@@ -360,7 +362,9 @@ the shell has added `history` to the command log before actually
 running it. In fact, the shell *always* adds commands to the log
 before running them. Why do you think it does this?
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -371,9 +375,7 @@ have a record of the last command run in the event of a crash.
 
 
 
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 In practice, most people develop shell scripts by running commands
 at the shell prompt a few times
@@ -452,7 +454,7 @@ she could modify her script to check for command-line arguments,
 and use `NENE*A.txt NENE*B.txt` if none were provided.
 Of course, this introduces another tradeoff between flexibility and complexity.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Variables in Shell Scripts
 
@@ -478,7 +480,9 @@ Which of the following outputs would you expect to see?
 3. The first and the last line of each file in the `alkanes` directory
 4. An error because of the quotes around `*.pdb`
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -498,11 +502,9 @@ script by `head` and `tail`.
 
 
 
-:::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Find the Longest File With a Given Extension
 
@@ -523,8 +525,9 @@ Feel free to test your script on another directory e.g.
 ```bash
 $ bash longest.sh shell-lesson-data/exercise-data/writing txt
 ```
+:::
 
-:::::::::::::::  solution
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -547,11 +550,11 @@ With `wc -l $1/*.$2 | sort -n | tail -n 1` we'll see the final summary
 line: we can build our pipeline up in pieces to be sure we understand
 the output.
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::
+
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Script Reading Comprehension
 
@@ -578,8 +581,9 @@ done
 # Script 3
 echo $@.pdb
 ```
+:::
 
-:::::::::::::::  solution
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solutions
 
@@ -600,11 +604,10 @@ followed by `.pdb`.
 cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb.pdb
 ```
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Debugging Scripts
 
@@ -636,7 +639,9 @@ $ bash -x do-errors.sh NENE*A.txt NENE*B.txt
 What is the output showing you?
 Which line is responsible for the error?
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -648,21 +653,20 @@ an empty string.
 
 
 
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 
+{{< include ../_includes/footer.qmd >}}
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
-
-- Save commands in files (usually called shell scripts) for re-use.
-- `bash [filename]` runs the commands saved in a file.
-- `$@` refers to all of a shell script's command-line arguments.
-- `$1`, `$2`, etc., refer to the first command-line argument, the second command-line argument, etc.
-- Place variables in quotes if the values might have spaces in them.
-- Letting users decide what files to process is more flexible and more consistent with built-in Unix commands.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+<table style="width: 100%; border: none;">
+    <tr>
+        <td style="text-align: left; width: 50%;">
+            [← Previous](../episodes/06-loop.qmd)
+        </td>
+        <td style="text-align: right; width: 50%;">
+            [Next →](../episodes/08-find.qmd)
+        </td>
+    </tr>
+</table>
 
 

@@ -2,23 +2,23 @@
 title: Finding Things
 teaching: 25
 exercises: 20
+objectives:
+    - Use `grep` to select lines from text files that match simple patterns.
+    - Use `find` to find files and directories whose names match simple patterns.
+    - Use the output of one command as the command-line argument(s) to another command.
+    - Explain what is meant by 'text' and 'binary' files, and why many common tools don't handle the latter well.
+questions:
+    - How can I find files?
+    - How can I find things in files?
+keypoints:
+    - "`find` finds files with specific properties that match patterns."
+    - "`grep` selects lines in files that match patterns."
+    - "`--help` is an option supported by many bash commands, and programs that can be run from within Bash, to display more information on how to use these commands or programs."
+    - "`man [command]` displays the manual page for a given command."
+    - "`$([command])` inserts a command's output in place."
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
-
-- Use `grep` to select lines from text files that match simple patterns.
-- Use `find` to find files and directories whose names match simple patterns.
-- Use the output of one command as the command-line argument(s) to another command.
-- Explain what is meant by 'text' and 'binary' files, and why many common tools don't handle the latter well.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- How can I find files?
-- How can I find things in files?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+{{< include ../_includes/header.qmd >}}
 
 In the same way that many of us now use 'Google' as a
 verb meaning 'to find', Unix programmers often use the
@@ -235,7 +235,7 @@ Miscellaneous:
 ...        ...        ...
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Using `grep`
 
@@ -250,7 +250,9 @@ and the presence of absence:
 3. `grep -w "of" haiku.txt`
 4. `grep -i "of" haiku.txt`
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -259,11 +261,10 @@ The other options will also match 'of' when part of another word.
 
 
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Wildcards
 
@@ -293,9 +294,28 @@ matches a single character (just like `?` in the shell), while the `o`
 matches an actual 'o'.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+### Finding by Permissions
+
+`find` can filter by file permissions using `-perm`. This is handy for locating executables or overly open files.
+
+Find regular files the owner can execute:
+
+```bash
+$ find . -type f -perm -u=x
+```
+
+Find files writable by the group or readable by others:
+
+```bash
+$ find . -type f -perm -g=w      # group has write
+$ find . -type f -perm -o=r      # others have read
+```
+
+The leading `-` before each mode (e.g., `-u=x`) means "match if these bits are set", not exactly equal to the mode.
+
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Tracking a Species
 
@@ -343,7 +363,9 @@ and `man cut` to select more than one field in a line.
 An example of such a file is provided in
 `shell-lesson-data/exercise-data/animal-counts/animals.csv`
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -361,11 +383,10 @@ You would call the script above like this:
 $ bash count-species.sh bear .
 ```
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Little Women
 
@@ -385,7 +406,9 @@ There is often more than one way to solve a programming task, so a
 particular solution is usually chosen based on a combination of
 yielding the correct result, elegance, readability, and speed.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solutions
 
@@ -419,9 +442,9 @@ most frequently).
 
 
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::
 
 While `grep` finds lines in files,
 the `find` command finds files themselves.
@@ -568,7 +591,7 @@ $ find . -name "*.txt"
 ./numbers.txt
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Listing vs. Finding
 
@@ -578,7 +601,7 @@ but under normal circumstances,
 while `find` searches for things with certain properties and shows them.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 As we said earlier,
 the command line's power lies in combining tools.
@@ -630,7 +653,7 @@ $ grep "searching" $(find . -name "*.txt")
 ./writing/haiku.txt:With searching comes loss
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Matching and Subtracting
 
@@ -646,7 +669,9 @@ Once you have thought about your answer, you can test the commands in the
 3. `grep -v "unicorn" $(find creatures -name "*.dat")`
 4. None of the above.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -663,12 +688,9 @@ Option 3 is incorrect because it searches the contents of the files for lines wh
 do not match 'unicorn', rather than searching the file names.
 
 
+:::
 
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Binary Files
 
@@ -691,7 +713,7 @@ modern programming languages have borrowed a lot of
 ideas from it, and imitation is also the sincerest form of praise.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 The Unix shell is older than most of the people who use it. It has
 survived so long because it is one of the most productive programming
@@ -704,7 +726,7 @@ And as Alfred North Whitehead wrote in 1911, 'Civilization advances by
 extending the number of important operations which we can perform
 without thinking about them.'
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## `find` Pipeline Reading Comprehension
 
@@ -713,8 +735,9 @@ Write a short explanatory comment for the following shell script:
 ```bash
 wc -l $(find . -name "*.dat") | sort -n
 ```
+:::
 
-:::::::::::::::  solution
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -722,22 +745,18 @@ wc -l $(find . -name "*.dat") | sort -n
 2. Count the number of lines each of these files contains
 3. Sort the output from step 2. numerically
   
-  
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 
+{{< include ../_includes/footer.qmd >}}
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
-
-- `find` finds files with specific properties that match patterns.
-- `grep` selects lines in files that match patterns.
-- `--help` is an option supported by many bash commands, and programs that can be run from within Bash, to display more information on how to use these commands or programs.
-- `man [command]` displays the manual page for a given command.
-- `$([command])` inserts a command's output in place.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
+<table style="width: 100%; border: none;">
+    <tr>
+        <td style="text-align: left; width: 50%;">
+            [← Previous](../episodes/07-script.qmd)
+        </td>
+        <td style="text-align: right; width: 50%;">
+            [Next →](../episodes/09-awk.qmd)
+        </td>
+    </tr>
+</table>

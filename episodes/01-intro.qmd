@@ -2,20 +2,20 @@
 title: Introducing the Shell
 teaching: 5
 exercises: 0
+objectives:
+    - Explain how the shell relates to the keyboard, the screen, the operating system, and users' programs.
+    - Explain when and why command-line interfaces should be used instead of graphical interfaces.
+questions:
+    - What is a command shell and why would I use one?
+keypoints:
+    - "A shell is a program whose primary purpose is to read commands and run other programs."
+    - "This lesson uses Bash, the default shell in many implementations of Unix."
+    - "Programs can be run in Bash by entering commands at the command-line prompt."
+    - "The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and its capacity to access networked machines."
+    - "A significant challenge when using the shell can be knowing what commands need to be run and how to run them."
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
-
-- Explain how the shell relates to the keyboard, the screen, the operating system, and users' programs.
-- Explain when and why command-line interfaces should be used instead of graphical interfaces.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- What is a command shell and why would I use one?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+{{< include ../_includes/header.qmd >}}
 
 ### Background
 
@@ -117,7 +117,7 @@ Desktop     Downloads   Movies      Pictures
 Documents   Library     Music       Public
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-caution}
 
 ## Command not found
 
@@ -136,7 +136,7 @@ This might happen if the command was mis-typed or if the program corresponding t
 is not installed.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## Nelle's Pipeline: A Typical Problem
 
@@ -179,15 +179,14 @@ In order to achieve her task, Nelle needs to know how to:
 - run a shell script containing her pipeline
 
 
+{{< include ../_includes/footer.qmd >}}
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
-
-- A shell is a program whose primary purpose is to read commands and run other programs.
-- This lesson uses Bash, the default shell in many implementations of Unix.
-- Programs can be run in Bash by entering commands at the command-line prompt.
-- The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and its capacity to access networked machines.
-- A significant challenge when using the shell can be knowing what commands need to be run and how to run them.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
+<table style="width: 100%; border: none;">
+    <tr>
+        <td style="text-align: left; width: 50%">&nbsp;</td>
+        <td style="text-align: right; width: 50%">
+            [Next →](../episodes/02-filedir.qmd)
+        </td>
+    </tr>
+</table>
 

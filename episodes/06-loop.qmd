@@ -2,24 +2,27 @@
 title: Loops
 teaching: 40
 exercises: 10
+objectives:
+    - Write a loop that applies one or more commands separately to each file in a set of files.
+    - Trace the values taken on by a loop variable during execution of the loop.
+    - Explain the difference between a variable's name and its value.
+    - Explain why spaces and some punctuation characters shouldn't be used in file names.
+    - Demonstrate how to see what commands have recently been executed.
+    - Re-run recently executed commands without retyping them.
+questions:
+    - How can I perform the same actions on many different files?
+keypoints:
+  - "A `for` loop repeats commands once for every thing in a list."
+  - "Every `for` loop needs a variable to refer to the thing it is currently operating on."
+  - "Use `$name` to expand a variable (i.e., get its value). `${name}` can also be used."
+  - "Do not use spaces, quotes, or wildcard characters such as '*' or '?' in filenames, as it complicates variable expansion."
+  - "Give files consistent names that are easy to match with wildcard patterns to make it easy to select them for looping."
+  - "Use the up-arrow key to scroll up through previous commands to edit and repeat them."
+  - "Use <kbd>Ctrl</kbd>+<kbd>R</kbd> to search through the previously entered commands."
+  - "Use `history` to display recent commands, and `![number]` to repeat a command by number."
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
-
-- Write a loop that applies one or more commands separately to each file in a set of files.
-- Trace the values taken on by a loop variable during execution of the loop.
-- Explain the difference between a variable's name and its value.
-- Explain why spaces and some punctuation characters shouldn't be used in file names.
-- Demonstrate how to see what commands have recently been executed.
-- Re-run recently executed commands without retyping them.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- How can I perform the same actions on many different files?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+{{< include ../_includes/header.qmd >}}
 
 **Loops** are a programming construct which allow us to repeat a command or set of commands
 for each item in a list.
@@ -77,7 +80,7 @@ unicorn.dat
 CLASSIFICATION: equus monoceros
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Follow the Prompt
 
@@ -87,7 +90,7 @@ us that we haven't finished typing a complete command yet. A semicolon, `;`,
 can be used to separate two commands written on a single line.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 When the shell sees the keyword `for`,
 it knows to repeat a command (or group of commands) once for each item in a list.
@@ -118,7 +121,7 @@ For the third iteration, `$filename` becomes
 and `tail` on the output of that.
 Since the list was only three items, the shell exits the `for` loop.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Same Symbols, Different Meanings
 
@@ -134,7 +137,7 @@ If *you* type `>` or `$` yourself, it is an instruction from you that
 the shell should redirect output or get the value of a variable.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 When using variables it is also
 possible to put the names into curly braces to clearly delimit the variable
@@ -175,13 +178,15 @@ writing the code and the person reading it.
 Note also that loops can be used for other things than filenames, like a list of numbers
 or a subset of data.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Write your own loop
 
 How would you write a loop that echoes all 10 numbers from 0 to 9?
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -205,11 +210,10 @@ $ for loop_variable in 0 1 2 3 4 5 6 7 8 9
 9
 ```
 Alternatively, try replacing the enumeration of integers `0 1 2 3 4 5 6 7 8 9` by `{0..9}` to obtain an identical output.    
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Variables in Loops
 
@@ -240,7 +244,9 @@ $ for datafile in *.pdb
 
 Why do these two loops give different outputs?
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -280,11 +286,10 @@ pentane.pdb
 propane.pdb
 ```
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Limiting Sets of Files
 
@@ -303,7 +308,9 @@ $ for filename in c*
 3. Only `cubane.pdb`, `octane.pdb` and `pentane.pdb` are listed.
 4. Only `cubane.pdb` is listed.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -311,7 +318,9 @@ $ for filename in c*
 the letter c, followed by zero or more other characters will be matched.
 
 
-:::::::::::::::::::::::::
+:::
+
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 How would the output differ from using this command instead?
 
@@ -328,7 +337,9 @@ $ for filename in *c*
 4. The files `cubane.pdb` and `octane.pdb` will be listed.
 5. Only the file `octane.pdb` will be listed.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -336,12 +347,9 @@ $ for filename in *c*
 characters before a letter c and zero or more characters after the letter c will be matched.
 
 
+:::
 
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Saving to a File in a Loop - Part One
 
@@ -363,7 +371,9 @@ done
   and the text from `propane.pdb` will be saved to a file called `alkanes.pdb`.
 4. None of the above.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -374,11 +384,10 @@ done
   
   
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Saving to a File in a Loop - Part Two
 
@@ -400,7 +409,9 @@ done
 4. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb`
   and `propane.pdb` would be printed to the screen and saved to a file called `all.pdb`.
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -409,10 +420,7 @@ output from a command.
 Given the output from the `cat` command has been redirected, nothing is printed to the screen.
 
 
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 Let's continue with our example in the `shell-lesson-data/exercise-data/creatures` directory.
 Here's another example:
@@ -434,7 +442,7 @@ Then, the `head` and `tail` combination selects lines 81-100
 from whatever file is being processed
 (assuming the file has at least 100 lines).
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Spaces in Names
 
@@ -483,7 +491,7 @@ CAAGTGTTCC
 ...
 ```
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 We would like to modify each of the files in `shell-lesson-data/exercise-data/creatures`,
 but also save a version of the original files. We want to copy the original files to new
@@ -643,7 +651,7 @@ $ for datafile in NENE*A.txt NENE*B.txt; do echo $datafile;
 bash goostats.sh $datafile stats-$datafile; done
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Beginning and End
 
@@ -651,7 +659,7 @@ We can move to the beginning of a line in the shell by typing <kbd>Ctrl</kbd>\+<
 and to the end using <kbd>Ctrl</kbd>\+<kbd>E</kbd>.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 When she runs her program now,
 it produces one line of output every five seconds or so:
@@ -674,7 +682,7 @@ to examine one of the output files.
 It looks good,
 so she decides to get some coffee and catch up on her reading.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Those Who Know History Can Choose to Repeat It
 
@@ -700,9 +708,9 @@ then she can re-run `goostats.sh` on the files simply by typing
 `!459`.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note}
 
 ## Other History Commands
 
@@ -722,9 +730,9 @@ There are a number of other shortcut commands for getting at the history.
   quicker than doing <kbd>↑</kbd> and editing the command-line.
   
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Doing a Dry Run
 
@@ -761,7 +769,9 @@ $ for datafile in *.pdb
 > done
 ```
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -781,11 +791,9 @@ Try both versions for yourself to see the output! Be sure to open the
 
 
 
-:::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
+::: {.callout-note .challenge-callout icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Nested Loops
 
@@ -804,7 +812,9 @@ $ for species in cubane ethane methane
 > done
 ```
 
-:::::::::::::::  solution
+:::
+
+::: {.callout-tip .solution-callout collapse="true" icon="false" style="border-left: 4px solid #ffc107;"}
 
 ## Solution
 
@@ -816,23 +826,21 @@ Try running the code for yourself to see which directories are created!
 
 
 
-:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
+:::
 
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
+{{< include ../_includes/footer.qmd >}}
 
-- A `for` loop repeats commands once for every thing in a list.
-- Every `for` loop needs a variable to refer to the thing it is currently operating on.
-- Use `$name` to expand a variable (i.e., get its value). `${name}` can also be used.
-- Do not use spaces, quotes, or wildcard characters such as '\*' or '?' in filenames, as it complicates variable expansion.
-- Give files consistent names that are easy to match with wildcard patterns to make it easy to select them for looping.
-- Use the up-arrow key to scroll up through previous commands to edit and repeat them.
-- Use <kbd>Ctrl</kbd>\+<kbd>R</kbd> to search through the previously entered commands.
-- Use `history` to display recent commands, and `![number]` to repeat a command by number.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="text-align: left; width: 50%;">
+      [← Previous](../episodes/05-pipefilter.qmd)
+    </td>
+    <td style="text-align: right; width: 50%;">
+      [Next →](../episodes/07-script.qmd)
+    </td>
+  </tr>
+</table>
 
 
